@@ -9,7 +9,7 @@ import {
 import { useMeetings } from '@/store/meetings'
 import { useLiveTranscription } from '@/hooks/useLiveTranscription'
 import { downloadFile, toMarkdown } from '@/lib/export'
-import type { Analysis, Meeting } from '@/types/meeting'
+import type { Analysis } from '@/types/meeting'
 
 const MeetingBoard = dynamic(() => import('./MeetingBoard').then(m => m.MeetingBoard), { ssr: false })
 type Tab = 'minutes' | 'transcript' | 'actions'
@@ -60,8 +60,8 @@ export function MeetingStudio() {
       } catch (err) { console.error('Failed to load saved meetings', err) }
     })()
     const saved = localStorage.getItem('meetings-app:theme')
-    if (saved === 'dark') setDark(true)
-    return () => { cancelled = true }
+    const frame = requestAnimationFrame(() => { if (saved === 'dark') setDark(true) })
+    return () => { cancelled = true; cancelAnimationFrame(frame) }
   }, [])
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
@@ -101,7 +101,7 @@ export function MeetingStudio() {
       setAiWorking(false)
     }
   }, [])
-  runAIRef.current = runAI
+  useEffect(() => { runAIRef.current = runAI }, [runAI])
 
   const onFinal = useCallback((text: string) => {
     const state = useMeetings.getState()

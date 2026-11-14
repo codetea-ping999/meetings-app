@@ -35,7 +35,7 @@ export function MeetingBoard({ analysis, snapshot, protectedIds, deletedIds, onC
   const protectedRef = useRef(new Set(protectedIds))
   const deletedRef = useRef(new Set(deletedIds))
   const callback = useRef(onChange)
-  callback.current = onChange
+  useEffect(() => { callback.current = onChange }, [onChange])
   const lastLayout = useRef<DiagramKind | null>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
 

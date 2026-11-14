@@ -6,7 +6,7 @@ type LiveEvent = { type: string; item_id?: string; delta?: string; transcript?: 
 
 export function useLiveTranscription(onFinal: (text: string) => void) {
   const onFinalRef = useRef(onFinal)
-  onFinalRef.current = onFinal
+  useEffect(() => { onFinalRef.current = onFinal }, [onFinal])
   const [status, setStatus] = useState<LiveStatus>('idle')
   const [interim, setInterim] = useState('')
   const [error, setError] = useState('')
