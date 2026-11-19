@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+:root { color-scheme: light; --surface: #ffffff; --soft: #f7f8fb; --border: #e8eaf0; --ink: #182233; --muted: #747e90; }
+html.dark { color-scheme: dark; --surface: #151b27; --soft: #10151f; --border: #30384a; --ink: #e5eaf3; --muted: #9aa5b7; }
+body { margin: 0; color: var(--ink); background: var(--soft); font-family: Arial, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', Meiryo, sans-serif; }
+* { box-sizing: border-box; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+input, textarea { outline: none; }
+.muted { color: var(--muted); }
+.surface { background: var(--surface); }
+.soft { background: var(--soft); }
+.stroke { border-color: var(--border); }
+.pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: 9px; padding: 9px 12px; font-size: 12px; font-weight: 600; background: var(--surface); }
+.pill:hover { background: var(--soft); }
+.pill:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid #747ef0; outline-offset: 2px; }
+.actions-scroll::-webkit-scrollbar, .aside-scroll::-webkit-scrollbar { width: 6px; }
+.actions-scroll::-webkit-scrollbar-thumb, .aside-scroll::-webkit-scrollbar-thumb { background: #b1b8c4; border-radius: 8px; }
+@keyframes pulse-dot { 50% { opacity: .32; } }
+.rec-dot { animation: pulse-dot 1s infinite; }
