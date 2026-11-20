@@ -7,7 +7,7 @@
 **必要なもの**: Node.js 20.9以上、npm、Anthropic APIキー、OpenAI APIキー、Chrome/EdgeなどWebRTCを利用できるブラウザ。
 
 ```bash
-npm install
+npm ci
 cp .env.example .env.local
 # .env.local を編集して ANTHROPIC_API_KEY / OPENAI_API_KEY を設定
 npm run dev
